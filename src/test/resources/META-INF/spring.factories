@@ -1,0 +1,1 @@
+org.springframework.test.context.ContextCustomizerFactory = com.hta.carservice.config.TestContainersSpringContextCustomizerFactory
