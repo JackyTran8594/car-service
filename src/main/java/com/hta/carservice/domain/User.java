@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -19,91 +20,65 @@ import org.hibernate.annotations.BatchSize;
  * A user.
  */
 @Entity
-@Table(name = "jhi_user")
+@Table(name = "user_entity")
 public class User extends AbstractAuditingEntity<Long> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-    @SequenceGenerator(name = "sequenceGenerator")
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_entity_seq")
+    @SequenceGenerator(name = "user_entity_seq")
     private Long id;
 
-    @NotNull
-    @Pattern(regexp = Constants.LOGIN_REGEX)
-    @Size(min = 1, max = 50)
-    @Column(length = 50, unique = true, nullable = false)
-    private String login;
+    @Id
+    @Column(name = "user_id", length = 32)
+    private String userId;
 
-    @JsonIgnore
-    @NotNull
-    @Size(min = 60, max = 60)
-    @Column(name = "password_hash", length = 60, nullable = false)
+    //    @Column(name = "role_id", length = 32)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "role_id")
+    private Role role;
+
+    @Column(name = "password", length = 32)
     private String password;
 
-    @Size(max = 50)
-    @Column(name = "first_name", length = 50)
-    private String firstName;
+    @Column(name = "temp_password", length = 32)
+    private String tempPassword;
 
-    @Size(max = 50)
-    @Column(name = "last_name", length = 50)
-    private String lastName;
+    @Column(name = "is_active")
+    private Short isActive;
 
-    @Email
-    @Size(min = 5, max = 254)
-    @Column(length = 254, unique = true)
-    private String email;
+    @Column(name = "display_name", columnDefinition = "nvarchar(40)")
+    private String displayName;
 
-    @NotNull
-    @Column(nullable = false)
-    private boolean activated = false;
+    @Column(name = "description", columnDefinition = "nvarchar(512)")
+    private String description;
 
-    @Size(min = 2, max = 10)
-    @Column(name = "lang_key", length = 10)
-    private String langKey;
+    @OneToMany(mappedBy = "user", cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
+    private Set<UserAcl> userAcls = new HashSet<>();
 
-    @Size(max = 256)
-    @Column(name = "image_url", length = 256)
-    private String imageUrl;
+    public User() {}
 
-    @Size(max = 20)
-    @Column(name = "activation_key", length = 20)
-    @JsonIgnore
-    private String activationKey;
-
-    @Size(max = 20)
-    @Column(name = "reset_key", length = 20)
-    @JsonIgnore
-    private String resetKey;
-
-    @Column(name = "reset_date")
-    private Instant resetDate = null;
-
-    @JsonIgnore
-    @ManyToMany
-    @JoinTable(
-        name = "jhi_user_authority",
-        joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") },
-        inverseJoinColumns = { @JoinColumn(name = "authority_name", referencedColumnName = "name") }
-    )
-    @BatchSize(size = 20)
-    private Set<Authority> authorities = new HashSet<>();
-
-    public Long getId() {
-        return id;
+    public User(Long id, String userId, String password, String tempPassword, Short isActive, String displayName, String description) {
+        this.id = id;
+        this.userId = userId;
+        this.password = password;
+        this.tempPassword = tempPassword;
+        this.isActive = isActive;
+        this.displayName = displayName;
+        this.description = description;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public String getLogin() {
-        return login;
+    public String getUserId() {
+        return userId;
     }
 
-    // Lowercase the login before saving it in database
-    public void setLogin(String login) {
-        this.login = StringUtils.lowerCase(login, Locale.ENGLISH);
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getPassword() {
@@ -114,115 +89,100 @@ public class User extends AbstractAuditingEntity<Long> implements Serializable {
         this.password = password;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getTempPassword() {
+        return tempPassword;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setTempPassword(String tempPassword) {
+        this.tempPassword = tempPassword;
     }
 
-    public String getLastName() {
-        return lastName;
+    public Short getIsActive() {
+        return isActive;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setIsActive(Short isActive) {
+        this.isActive = isActive;
     }
 
-    public String getEmail() {
-        return email;
+    public String getDisplayName() {
+        return displayName;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getDescription() {
+        return description;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public boolean isActivated() {
-        return activated;
-    }
-
-    public void setActivated(boolean activated) {
-        this.activated = activated;
-    }
-
-    public String getActivationKey() {
-        return activationKey;
-    }
-
-    public void setActivationKey(String activationKey) {
-        this.activationKey = activationKey;
-    }
-
-    public String getResetKey() {
-        return resetKey;
-    }
-
-    public void setResetKey(String resetKey) {
-        this.resetKey = resetKey;
-    }
-
-    public Instant getResetDate() {
-        return resetDate;
-    }
-
-    public void setResetDate(Instant resetDate) {
-        this.resetDate = resetDate;
-    }
-
-    public String getLangKey() {
-        return langKey;
-    }
-
-    public void setLangKey(String langKey) {
-        this.langKey = langKey;
-    }
-
-    public Set<Authority> getAuthorities() {
-        return authorities;
-    }
-
-    public void setAuthorities(Set<Authority> authorities) {
-        this.authorities = authorities;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof User)) {
-            return false;
-        }
-        return id != null && id.equals(((User) o).id);
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return (
+            Objects.equals(getId(), user.getId()) &&
+            Objects.equals(getUserId(), user.getUserId()) &&
+            Objects.equals(getPassword(), user.getPassword()) &&
+            Objects.equals(getTempPassword(), user.getTempPassword()) &&
+            Objects.equals(getIsActive(), user.getIsActive()) &&
+            Objects.equals(getDisplayName(), user.getDisplayName()) &&
+            Objects.equals(getDescription(), user.getDescription())
+        );
     }
 
     @Override
     public int hashCode() {
-        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
-        return getClass().hashCode();
+        return Objects.hash(
+            getId(),
+            getUserId(),
+            role.getRoleId(),
+            getPassword(),
+            getTempPassword(),
+            getIsActive(),
+            getDisplayName(),
+            getDescription()
+        );
     }
 
-    // prettier-ignore
     @Override
     public String toString() {
-        return "User{" +
-            "login='" + login + '\'' +
-            ", firstName='" + firstName + '\'' +
-            ", lastName='" + lastName + '\'' +
-            ", email='" + email + '\'' +
-            ", imageUrl='" + imageUrl + '\'' +
-            ", activated='" + activated + '\'' +
-            ", langKey='" + langKey + '\'' +
-            ", activationKey='" + activationKey + '\'' +
-            "}";
+        return (
+            "User{" +
+            "id=" +
+            id +
+            ", userId='" +
+            userId +
+            '\'' +
+            ", roleId='" +
+            role.getRoleId() +
+            '\'' +
+            ", password='" +
+            password +
+            '\'' +
+            ", tempPassword='" +
+            tempPassword +
+            '\'' +
+            ", isActive=" +
+            isActive +
+            ", displayName='" +
+            displayName +
+            '\'' +
+            ", description='" +
+            description +
+            '\'' +
+            '}'
+        );
+    }
+
+    @Override
+    public Long getId() {
+        return id;
     }
 }

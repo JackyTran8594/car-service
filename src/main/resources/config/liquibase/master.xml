@@ -2,7 +2,9 @@
 <databaseChangeLog
     xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd"
+    objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
     <property name="now" value="GETDATE()" dbms="mssql"/>
     <property name="floatType" value="float" dbms="mssql"/>
     <property name="clobType" value="clob" dbms="mssql"/>
@@ -10,7 +12,8 @@
     <property name="uuidType" value="uuid" dbms="mssql"/>
     <property name="datetimeType" value="datetime" dbms="mssql"/>
 
-    <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <includeAll path="liquibase/changelog" />
+
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->

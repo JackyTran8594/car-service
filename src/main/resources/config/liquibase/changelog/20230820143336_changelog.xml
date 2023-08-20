@@ -1,0 +1,551 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.6.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-1">
+        <createTable tableName="administrative_unit">
+            <column name="parent_code" type="varchar(16)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="administrative_unitPK"/>
+            </column>
+            <column name="administrative_id" type="varchar(16)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="administrative_unitPK"/>
+            </column>
+            <column name="classify_id" type="varchar(8)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="administrative_unitPK"/>
+            </column>
+            <column name="full_code" type="varchar(16)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="administrative_unitPK"/>
+            </column>
+            <column name="id" type="bigint">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="administrative_unitPK"/>
+            </column>
+            <column name="official_name" type="nvarchar(128)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="administrative_unitPK"/>
+            </column>
+            <column name="short_name" type="varchar(64)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="administrative_unitPK"/>
+            </column>
+            <column name="created_by" type="varchar(50)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="administrative_unitPK"/>
+            </column>
+            <column name="created_date" type="datetime2">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="administrative_unitPK"/>
+            </column>
+            <column name="last_modified_by" type="varchar(50)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="administrative_unitPK"/>
+            </column>
+            <column name="last_modified_date" type="datetime2">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="administrative_unitPK"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-2">
+        <createTable tableName="device">
+            <column name="device_id" type="varchar(48)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="devicePK"/>
+            </column>
+            <column name="created_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="datetime2"/>
+            <column name="last_modified_by" type="varchar(50)"/>
+            <column name="last_modified_date" type="datetime2"/>
+            <column name="display_name" type="varchar(64)"/>
+            <column name="id" type="bigint"/>
+            <column name="imei_number" type="varchar(16)"/>
+            <column name="serial_number" type="varchar(24)"/>
+            <column name="sim_id" type="varchar(24)"/>
+            <column name="status" type="smallint"/>
+            <column name="vehicle_id" type="varchar(12)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-3">
+        <createTable tableName="exam">
+            <column autoIncrement="true" name="exam_id" type="bigint">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="examPK"/>
+            </column>
+            <column name="created_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="datetime2"/>
+            <column name="last_modified_by" type="varchar(50)"/>
+            <column name="last_modified_date" type="datetime2"/>
+            <column name="center_code" type="varchar(8)"/>
+            <column name="exam_code" type="varchar(16)"/>
+            <column name="exam_date" type="int"/>
+            <column name="examinee_number" type="smallint"/>
+            <column name="release_date" type="int"/>
+            <column name="release_number" type="varchar(40)"/>
+            <column name="exam_type" type="smallint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-4">
+        <createTable tableName="exam_type">
+            <column autoIncrement="true" name="exam_type" type="smallint">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="exam_typePK"/>
+            </column>
+            <column name="created_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="datetime2"/>
+            <column name="last_modified_by" type="varchar(50)"/>
+            <column name="last_modified_date" type="datetime2"/>
+            <column name="description" type="nvarchar(128)"/>
+            <column name="id" type="bigint"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-5">
+        <createTable tableName="examinee">
+            <column autoIncrement="true" name="examinee_id" type="bigint">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="examineePK"/>
+            </column>
+            <column name="created_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="datetime2"/>
+            <column name="last_modified_by" type="varchar(50)"/>
+            <column name="last_modified_date" type="datetime2"/>
+            <column name="address_code" type="varchar(12)"/>
+            <column name="birth_date" type="int"/>
+            <column name="center_code" type="varchar(8)"/>
+            <column name="exam_content" type="smallint"/>
+            <column name="examinee_code" type="smallint"/>
+            <column name="first_name" type="varchar(64)"/>
+            <column name="full_name" type="varchar(256)"/>
+            <column name="gender" type="smallint"/>
+            <column name="id" type="bigint"/>
+            <column name="image" type="varbinary(1)"/>
+            <column name="last_name" type="varchar(128)"/>
+            <column name="unit_code" type="varchar(8)"/>
+            <column name="license_code" type="varchar(8)"/>
+            <column name="national_code" type="varchar(8)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-6">
+        <createTable tableName="examinee_result">
+            <column name="id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="result" type="smallint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="datetime2">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_modified_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_modified_date" type="datetime2">
+                <constraints nullable="false"/>
+            </column>
+            <column name="examinee_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="subject_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-7">
+        <createTable tableName="faults">
+            <column autoIncrement="true" name="fault_id" type="bigint">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="faultsPK"/>
+            </column>
+            <column name="created_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="datetime2"/>
+            <column name="last_modified_by" type="varchar(50)"/>
+            <column name="last_modified_date" type="datetime2"/>
+            <column name="full_name" type="nvarchar(128)"/>
+            <column name="short_name" type="nvarchar(64)"/>
+            <column name="subtraction" type="smallint"/>
+            <column name="test_id" type="smallint"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-8">
+        <createTable tableName="jhi_authority">
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="jhi_authorityPK"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-9">
+        <createTable tableName="license_class">
+            <column name="license_code" type="varchar(8)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="license_classPK"/>
+            </column>
+            <column name="created_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="datetime2"/>
+            <column name="last_modified_by" type="varchar(50)"/>
+            <column name="last_modified_date" type="datetime2"/>
+            <column name="description" type="nvarchar(64)"/>
+            <column name="id" type="bigint"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-10">
+        <createTable tableName="national">
+            <column name="national_code" type="varchar(8)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="nationalPK"/>
+            </column>
+            <column name="created_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="datetime2"/>
+            <column name="last_modified_by" type="varchar(50)"/>
+            <column name="last_modified_date" type="datetime2"/>
+            <column name="description" type="nvarchar(64)"/>
+            <column name="id" type="bigint"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-11">
+        <createTable tableName="reference">
+            <column name="license_class" type="varchar(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="nvarchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="maximum" type="smallint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="minimum" type="smallint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="datetime2">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_modified_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_modified_date" type="datetime2">
+                <constraints nullable="false"/>
+            </column>
+            <column name="subject_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-12">
+        <createTable tableName="role">
+            <column name="role_id" type="varchar(32)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="rolePK"/>
+            </column>
+            <column name="created_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="datetime2"/>
+            <column name="last_modified_by" type="varchar(50)"/>
+            <column name="last_modified_date" type="datetime2"/>
+            <column name="description" type="nvarchar(512)"/>
+            <column name="display_name" type="nvarchar(256)"/>
+            <column name="id" type="bigint"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-13">
+        <createTable tableName="role_acl">
+            <column name="acl_id" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="nvarchar(512)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="datetime2">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_modified_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_modified_date" type="datetime2">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role_id" type="varchar(32)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-14">
+        <createTable tableName="session">
+            <column name="session_id" type="varchar(40)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="sessionPK"/>
+            </column>
+            <column name="created_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="datetime2"/>
+            <column name="last_modified_by" type="varchar(50)"/>
+            <column name="last_modified_date" type="datetime2"/>
+            <column name="device_id" type="varchar(48)"/>
+            <column name="duration" type="int"/>
+            <column name="examinee_id" type="bigint"/>
+            <column name="id" type="bigint"/>
+            <column name="mark" type="int"/>
+            <column name="session_type" type="int"/>
+            <column name="time_login" type="int"/>
+            <column name="time_logout" type="int"/>
+            <column name="times" type="int"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-15">
+        <createTable tableName="session_events">
+            <column name="event_id" type="bigint">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="session_eventsPK"/>
+            </column>
+            <column name="created_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="datetime2"/>
+            <column name="last_modified_by" type="varchar(50)"/>
+            <column name="last_modified_date" type="datetime2"/>
+            <column name="event_type" type="smallint"/>
+            <column name="id" type="bigint"/>
+            <column name="timestamp" type="int"/>
+            <column name="device_id" type="varchar(48)"/>
+            <column name="session_id" type="varchar(40)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-16">
+        <createTable tableName="session_images">
+            <column name="image_id" type="int">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="session_imagesPK"/>
+            </column>
+            <column name="created_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="datetime2"/>
+            <column name="last_modified_by" type="varchar(50)"/>
+            <column name="last_modified_date" type="datetime2"/>
+            <column name="id" type="bigint"/>
+            <column name="image" type="varbinary(1)"/>
+            <column name="timestamp" type="int"/>
+            <column name="device_id" type="varchar(48)"/>
+            <column name="session_id" type="varchar(40)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-17">
+        <createTable tableName="session_tracks">
+            <column name="track_id" type="bigint">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="session_tracksPK"/>
+            </column>
+            <column name="created_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="datetime2"/>
+            <column name="last_modified_by" type="varchar(50)"/>
+            <column name="last_modified_date" type="datetime2"/>
+            <column name="id" type="bigint"/>
+            <column name="latitude" type="float(53)"/>
+            <column name="longitude" type="float(53)"/>
+            <column name="device_id" type="varchar(48)"/>
+            <column name="session_id" type="varchar(40)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-18">
+        <createTable tableName="subject">
+            <column autoIncrement="true" name="subject_id" type="bigint">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="subjectPK"/>
+            </column>
+            <column name="created_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="datetime2"/>
+            <column name="last_modified_by" type="varchar(50)"/>
+            <column name="last_modified_date" type="datetime2"/>
+            <column name="description" type="nvarchar(64)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-19">
+        <createTable tableName="transportation_unit">
+            <column name="transportation_id" type="varchar(8)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="transportation_unitPK"/>
+            </column>
+            <column name="address" type="nvarchar(128)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="transportation_unitPK"/>
+            </column>
+            <column name="contact_phone" type="varchar(20)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="transportation_unitPK"/>
+            </column>
+            <column name="full_name" type="nvarchar(128)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="transportation_unitPK"/>
+            </column>
+            <column name="id" type="bigint">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="transportation_unitPK"/>
+            </column>
+            <column name="license" type="varchar(24)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="transportation_unitPK"/>
+            </column>
+            <column name="license_expire" type="int">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="transportation_unitPK"/>
+            </column>
+            <column name="parent_code" type="varchar(8)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="transportation_unitPK"/>
+            </column>
+            <column name="parent_name" type="nvarchar(128)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="transportation_unitPK"/>
+            </column>
+            <column name="service_id" type="varchar(8)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="transportation_unitPK"/>
+            </column>
+            <column name="training_flow" type="int">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="transportation_unitPK"/>
+            </column>
+            <column name="created_by" type="varchar(50)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="transportation_unitPK"/>
+            </column>
+            <column name="created_date" type="datetime2">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="transportation_unitPK"/>
+            </column>
+            <column name="last_modified_by" type="varchar(50)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="transportation_unitPK"/>
+            </column>
+            <column name="last_modified_date" type="datetime2">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="transportation_unitPK"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-20">
+        <createTable tableName="user_acl">
+            <column name="acl_id" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="access_level" type="smallint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="nvarchar(512)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="datetime2">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_modified_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_modified_date" type="datetime2">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="varchar(32)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-21">
+        <createTable tableName="user_entity">
+            <column name="user_id" type="varchar(32)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="user_entityPK"/>
+            </column>
+            <column name="created_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="datetime2"/>
+            <column name="last_modified_by" type="varchar(50)"/>
+            <column name="last_modified_date" type="datetime2"/>
+            <column name="description" type="nvarchar(512)"/>
+            <column name="display_name" type="nvarchar(40)"/>
+            <column name="id" type="bigint"/>
+            <column name="is_active" type="smallint"/>
+            <column name="password" type="varchar(32)"/>
+            <column name="temp_password" type="varchar(32)"/>
+            <column name="role_id" type="varchar(32)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-22">
+        <createTable tableName="vehicle">
+            <column name="vehicle_id" type="varchar(12)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="vehiclePK"/>
+            </column>
+            <column name="created_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="datetime2"/>
+            <column name="last_modified_by" type="varchar(50)"/>
+            <column name="last_modified_date" type="datetime2"/>
+            <column name="description" type="nvarchar(128)"/>
+            <column name="id" type="bigint"/>
+            <column name="license_class" type="varchar(8)"/>
+            <column name="status" type="smallint"/>
+            <column name="vehicle_no" type="int"/>
+            <column name="vehicle_plate" type="varchar(12)"/>
+            <column name="device_id" type="varchar(48)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-23">
+        <addPrimaryKey columnNames="subject_id, examinee_id, id, result, created_by, created_date, last_modified_by, last_modified_date" constraintName="examinee_resultPK" tableName="examinee_result"/>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-24">
+        <addPrimaryKey columnNames="subject_id, license_class, description, maximum, minimum, created_by, created_date, last_modified_by, last_modified_date" constraintName="referencePK" tableName="reference"/>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-25">
+        <addPrimaryKey columnNames="role_id, acl_id, description, id, created_by, created_date, last_modified_by, last_modified_date" constraintName="role_aclPK" tableName="role_acl"/>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-26">
+        <addPrimaryKey columnNames="user_id, acl_id, access_level, description, id, created_by, created_date, last_modified_by, last_modified_date" constraintName="user_aclPK" tableName="user_acl"/>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-27">
+        <addForeignKeyConstraint baseColumnNames="device_id" baseTableName="session_tracks" constraintName="FK2vosbykosj3e8irtx057bwroc" deferrable="false" initiallyDeferred="false" referencedColumnNames="device_id" referencedTableName="device" validate="true"/>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-28">
+        <addForeignKeyConstraint baseColumnNames="session_id" baseTableName="session_images" constraintName="FK3354pwprykqamjfi35uhd2tts" deferrable="false" initiallyDeferred="false" referencedColumnNames="session_id" referencedTableName="session" validate="true"/>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-29">
+        <addForeignKeyConstraint baseColumnNames="license_code" baseTableName="examinee" constraintName="FK475tl1dwoyn4ovg3wcehrmskg" deferrable="false" initiallyDeferred="false" referencedColumnNames="license_code" referencedTableName="license_class" validate="true"/>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-30">
+        <addForeignKeyConstraint baseColumnNames="subject_id" baseTableName="examinee_result" constraintName="FK5638w8ft1gx0lpodocqo6fq69" deferrable="false" initiallyDeferred="false" referencedColumnNames="subject_id" referencedTableName="subject" validate="true"/>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-31">
+        <addForeignKeyConstraint baseColumnNames="session_id" baseTableName="session_tracks" constraintName="FK5py5lbpe96wiaddo0500aio1j" deferrable="false" initiallyDeferred="false" referencedColumnNames="session_id" referencedTableName="session" validate="true"/>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-32">
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="role_acl" constraintName="FKabj9jt03a8g49u2bdgqu76h30" deferrable="false" initiallyDeferred="false" referencedColumnNames="role_id" referencedTableName="role" validate="true"/>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-33">
+        <addForeignKeyConstraint baseColumnNames="exam_type" baseTableName="exam" constraintName="FKegq8u29p3tbc8vfi7y4e2twem" deferrable="false" initiallyDeferred="false" referencedColumnNames="exam_type" referencedTableName="exam_type" validate="true"/>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-34">
+        <addForeignKeyConstraint baseColumnNames="device_id" baseTableName="session_events" constraintName="FKf40f3k09tiyl7339nfqw1pb38" deferrable="false" initiallyDeferred="false" referencedColumnNames="device_id" referencedTableName="device" validate="true"/>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-35">
+        <addForeignKeyConstraint baseColumnNames="national_code" baseTableName="examinee" constraintName="FKfl81vwmd7ec77rjv5p280vfq1" deferrable="false" initiallyDeferred="false" referencedColumnNames="national_code" referencedTableName="national" validate="true"/>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-36">
+        <addForeignKeyConstraint baseColumnNames="session_id" baseTableName="session_events" constraintName="FKi06yiar2qsv8paw9hvltkxf9t" deferrable="false" initiallyDeferred="false" referencedColumnNames="session_id" referencedTableName="session" validate="true"/>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-37">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_acl" constraintName="FKkjfmxs5594lk9lg07heisu6gy" deferrable="false" initiallyDeferred="false" referencedColumnNames="user_id" referencedTableName="user_entity" validate="true"/>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-38">
+        <addForeignKeyConstraint baseColumnNames="examinee_id" baseTableName="examinee_result" constraintName="FKnp13t42s8l4ur3p4l56b9pepp" deferrable="false" initiallyDeferred="false" referencedColumnNames="examinee_id" referencedTableName="examinee" validate="true"/>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-39">
+        <addForeignKeyConstraint baseColumnNames="device_id" baseTableName="vehicle" constraintName="FKnyyt3b1vm43ju0kl31aquaky5" deferrable="false" initiallyDeferred="false" referencedColumnNames="device_id" referencedTableName="device" validate="true"/>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-40">
+        <addForeignKeyConstraint baseColumnNames="device_id" baseTableName="session_images" constraintName="FKoctcpw5ijrkfh0plhu78pd3ec" deferrable="false" initiallyDeferred="false" referencedColumnNames="device_id" referencedTableName="device" validate="true"/>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-41">
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="user_entity" constraintName="FKpostrnt7qdgc4m56i71qlkl61" deferrable="false" initiallyDeferred="false" referencedColumnNames="role_id" referencedTableName="role" validate="true"/>
+    </changeSet>
+    <changeSet author="BACHTUVU (generated)" id="1692542029074-42">
+        <addForeignKeyConstraint baseColumnNames="subject_id" baseTableName="reference" constraintName="FKqqdj3ibcmkorlop8m2yf69mxk" deferrable="false" initiallyDeferred="false" referencedColumnNames="subject_id" referencedTableName="subject" validate="true"/>
+    </changeSet>
+</databaseChangeLog>
