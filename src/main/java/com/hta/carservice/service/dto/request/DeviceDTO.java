@@ -1,14 +1,10 @@
-package com.hta.carservice.service.dto;
+package com.hta.carservice.service.dto.request;
 
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
-import javax.persistence.*;
 
-public class DeviceDTO extends BaseDTO implements Serializable {
+public class DeviceDTO extends BaseDTO {
 
-    private static final long serialVersionUID = 1L;
     private Long id;
     private String deviceId;
     private String serialNumber;

@@ -1,4 +1,4 @@
-package com.hta.carservice.service.dto;
+package com.hta.carservice.service.dto.request;
 
 import java.io.Serializable;
 

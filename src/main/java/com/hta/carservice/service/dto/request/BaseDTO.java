@@ -1,12 +1,7 @@
-package com.hta.carservice.service.dto;
+package com.hta.carservice.service.dto.request;
 
 import java.time.Instant;
 import java.util.Objects;
-import javax.persistence.Column;
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
 
 public class BaseDTO {
 
