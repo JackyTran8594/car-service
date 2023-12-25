@@ -22,6 +22,7 @@ import tech.jhipster.config.JHipsterConstants;
 @SpringBootApplication
 @EnableConfigurationProperties({ LiquibaseProperties.class, ApplicationProperties.class })
 public class CarServiceApp {
+    
 
     private static final Logger log = LoggerFactory.getLogger(CarServiceApp.class);
 
