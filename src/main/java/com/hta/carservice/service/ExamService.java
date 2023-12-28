@@ -1,3 +1,5 @@
 package com.hta.carservice.service;
 
-public interface ExamService {}
+public interface ExamService {
+    void test();
+}
